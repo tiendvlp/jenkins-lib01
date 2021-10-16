@@ -29,12 +29,13 @@ def call(Map config=[:]) {
     def changeLogSets = currentBuild.changeSets;
 
     for (change in changeLogSets) {
+        def browser = change.browser
         def entries = change.items;
-        echo change.toString();
         for (entry in entries) {
-            echo "${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}"
+            echo browser.getChangeSetLink(entry)
+            echo "  ${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}"
             for (file in entry.affectedFiles) {
-                echo "  ${file.editType.name} ${file.path}";
+                echo "      ${file.editType.name} ${file.path}";
             }
         }
     }
