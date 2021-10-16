@@ -1,5 +1,6 @@
 import jenkins.model.Jenkins
 import hudson.util.VersionNumber
+
 class Plugin {
     private String shortName;
     private String version;
@@ -19,7 +20,7 @@ class Plugin {
             if (pluginOnCenter != null) {
                 version = pluginOnCenter.version;
             } else {
-                throw new RuntimeException ("Your plugin does not exist in your Jenkins instance and Jenkins plugin center !");
+                throw new RuntimeException ("Your plugin does not exist in current Jenkins instance and Jenkins plugin center !");
             }
         }
     }
