@@ -2,7 +2,8 @@ import java.io.*;
 import groovy.io.*;
 
 def call(Map config=[:]) {
-    def dri = new File (pwd());
+    println("hello i'm lib01");
+    def dir = new File (pwd());
     
     new File (dir.path + '/releasenote.txt').withWriter('utf-8') {
         writer -> 
