@@ -31,7 +31,7 @@ def call(Map config=[:]) {
     for (change in changeLogSets) {
         def browser = change.browser
         def entries = change.items;
-        echo browser.getRepoUrl().toString()
+        echo "Repository: ${browser.getRepoUrl().toString().replace("https://github.com/", "")}"
         for (entry in entries) {
             echo "  ${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}"
             for (file in entry.affectedFiles) {
