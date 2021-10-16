@@ -16,4 +16,26 @@ def call(Map config=[:]) {
                 }
             }
     }
+
+    def date = new Date();
+    def sdf = new SimpleDateFormat('dd/MM/yyyy HH:mm')
+    echo "Date and time is: " + sdf.format(date)
+
+    echo "Build number is: ${BUILD_NUMBER}"
+
+    def changeLogSets = currentBuild.changeSets;
+
+    for (change in changeLogSets) {
+        def entries = change.items;
+        for (entry in entries) {
+            echo "${entry.commit} by ${entry.author} on ${new Date(entry.timeStamp())}: ${entry.msg}"
+            for (file in entry.affectedFiles) {
+                echo "  ${file.editType.name} ${file.path}";
+            }
+        }
+    }
+
+    if (config.changes != "false") {
+        echo "changes"
+    }
 }
