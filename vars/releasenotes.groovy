@@ -30,6 +30,7 @@ def call(Map config=[:]) {
 
     for (change in changeLogSets) {
         def entries = change.items;
+        echo entries.toString();
         for (entry in entries) {
             echo "${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}"
             for (file in entry.affectedFiles) {
