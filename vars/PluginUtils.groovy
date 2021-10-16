@@ -7,6 +7,13 @@ class Plugin {
     private Boolean isInstalled = false;
     private Boolean isLatestVersion = false;
 
+    Plugin (PluginWrapper pluginWrapper) {
+        shortName = pluginWrapper.shortName;
+        version = pluginWrapper.version;
+        isInstalled = true;
+        isLatestVersion = true;
+    }
+
     Plugin(String shortName) {
         println(shortName);
         this.shortName = shortName;
